@@ -44,6 +44,10 @@
 		B27924F82C3BFD5100F4F416 /* InMemoryCardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27924F72C3BFD5100F4F416 /* InMemoryCardRepository.swift */; };
 		B27924FA2C3BFDDD00F4F416 /* CardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27924F92C3BFDDD00F4F416 /* CardsViewModel.swift */; };
 		B27924FC2C3C027700F4F416 /* PaymentsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27924FB2C3C027700F4F416 /* PaymentsConfiguration.swift */; };
+		B27924FE2C3C077800F4F416 /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27924FD2C3C077800F4F416 /* Payments.swift */; };
+		B27925022C3C07E000F4F416 /* PaymentsFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27925012C3C07E000F4F416 /* PaymentsFacade.swift */; };
+		B27925042C3C0D5100F4F416 /* IncrementalIdGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27925032C3C0D5100F4F416 /* IncrementalIdGenerator.swift */; };
+		B27925072C3C0E6400F4F416 /* LoggingPaymentsProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27925062C3C0E6400F4F416 /* LoggingPaymentsProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +109,10 @@
 		B27924F72C3BFD5100F4F416 /* InMemoryCardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCardRepository.swift; sourceTree = "<group>"; };
 		B27924F92C3BFDDD00F4F416 /* CardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewModel.swift; sourceTree = "<group>"; };
 		B27924FB2C3C027700F4F416 /* PaymentsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsConfiguration.swift; sourceTree = "<group>"; };
+		B27924FD2C3C077800F4F416 /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
+		B27925012C3C07E000F4F416 /* PaymentsFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsFacade.swift; sourceTree = "<group>"; };
+		B27925032C3C0D5100F4F416 /* IncrementalIdGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalIdGenerator.swift; sourceTree = "<group>"; };
+		B27925062C3C0E6400F4F416 /* LoggingPaymentsProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingPaymentsProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +241,7 @@
 		B27924D22C3BF2D700F4F416 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				B27925002C3C07CB00F4F416 /* Contract */,
 				B27924D52C3BF36B00F4F416 /* Infrastructure */,
 				B27924D32C3BF32600F4F416 /* Cards.swift */,
 				B27924DA2C3BF57D00F4F416 /* Transactions.swift */,
@@ -307,6 +316,7 @@
 		B27924EC2C3BFC2E00F4F416 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				B27925052C3C0E3700F4F416 /* Logging */,
 				B27924ED2C3BFC4E00F4F416 /* Time */,
 				B27924F02C3BFC8800F4F416 /* Identifiers */,
 				B27924F32C3BFCE000F4F416 /* Events */,
@@ -327,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				B27924F12C3BFCA900F4F416 /* UuidGenerator.swift */,
+				B27925032C3C0D5100F4F416 /* IncrementalIdGenerator.swift */,
 			);
 			path = Identifiers;
 			sourceTree = "<group>";
@@ -345,6 +356,23 @@
 				B27924F72C3BFD5100F4F416 /* InMemoryCardRepository.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		B27925002C3C07CB00F4F416 /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				B27924FD2C3C077800F4F416 /* Payments.swift */,
+				B27925012C3C07E000F4F416 /* PaymentsFacade.swift */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		B27925052C3C0E3700F4F416 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				B27925062C3C0E6400F4F416 /* LoggingPaymentsProxy.swift */,
+			);
+			path = Logging;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,11 +529,15 @@
 				B27924BC2C3BE49900F4F416 /* CardNumber.swift in Sources */,
 				B27924E12C3BF74E00F4F416 /* CardChargedEvend.swift in Sources */,
 				B27924C42C3BE6E800F4F416 /* CardTransaction.swift in Sources */,
+				B27925022C3C07E000F4F416 /* PaymentsFacade.swift in Sources */,
 				B27924872C3BDE8B00F4F416 /* CleanArchitectureApp.swift in Sources */,
 				B27924C62C3BE8B000F4F416 /* TransactionAmountSpecification.swift in Sources */,
 				B27924DD2C3BF66C00F4F416 /* Operations.swift in Sources */,
+				B27924FE2C3C077800F4F416 /* Payments.swift in Sources */,
 				B27924F52C3BFCFA00F4F416 /* ConsoleCardEventsPublisher.swift in Sources */,
 				B27924E92C3BF9A400F4F416 /* TimeProvider.swift in Sources */,
+				B27925072C3C0E6400F4F416 /* LoggingPaymentsProxy.swift in Sources */,
+				B27925042C3C0D5100F4F416 /* IncrementalIdGenerator.swift in Sources */,
 				B27924D72C3BF38400F4F416 /* CardRepository.swift in Sources */,
 				B27924BE2C3BE4F300F4F416 /* validation.swift in Sources */,
 				B27924FC2C3C027700F4F416 /* PaymentsConfiguration.swift in Sources */,

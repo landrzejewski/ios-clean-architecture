@@ -9,40 +9,60 @@ import Foundation
 
 final class PaymentsConfiguration {
     
-    func idGenerator() -> IdGenerator {
-        UuidGenerator()
+    private let inMemoryCardRepository = InMemoryCardRepository()
+    private let incrementalIdGenerator = IncrementalIdGenerator()
+    
+    init() throws {
+        // Data initialization
+        let currency = Currency(code: "EUR")
+        let cardNumber = try CardNumber(value: "1234567890123456")!
+        let cardBalance: Double = 10_000
+        let cardExpirationDate = Date().addingTimeInterval(365 * 24 * 60 * 60)
+        let card = Card(number: cardNumber, expirationDate: cardExpirationDate, balance: MonetaryAmount(value: cardBalance, currency: currency), transactions: [])
+        cardRepository().save(card: card)
+ 
+    }
+    
+    private func idGenerator() -> IdGenerator {
+        incrementalIdGenerator
     }
 
-    func timeProvider() -> TimeProvider {
+    private func timeProvider() -> TimeProvider {
         SystemTimeProvider()
     }
 
-    func cardRepository() -> CardRepository {
-        InMemoryCardRepository()
+    private func cardRepository() -> CardRepository {
+        inMemoryCardRepository
     }
 
-    func cardEventsPublisher() -> CardEventsPublisher {
+    private func cardEventsPublisher() -> CardEventsPublisher {
         ConsoleCardEventsPublisher()
     }
 
-    func transactionFeePolicy() -> TransactionFeePolicy {
+    private func transactionFeePolicy() -> TransactionFeePolicy {
         PerTransactionFeePolicy(singleTransactionFee: MonetaryAmount(value: 1, currency: Currency(code: "EUR")))
     }
 
-    func cardFeesCalculator(transactionFeePolicy: TransactionFeePolicy) -> CardFeesCalculator {
+    private func cardFeesCalculator(transactionFeePolicy: TransactionFeePolicy) -> CardFeesCalculator {
         CardFeesCalculator(transactionFeePolicy: transactionFeePolicy)
     }
 
-    func cards(cardRepository: CardRepository) -> Cards {
-        return Cards(cardRepository: cardRepository)
+    private func cards() -> Cards {
+        return Cards(cardRepository: cardRepository())
     }
 
-    func transactions(cardRepository: CardRepository, idGenerator: IdGenerator, timeProvider: TimeProvider) -> Transactions {
-        Transactions(cardRepository: cardRepository, idGenerator: idGenerator, timeProvider: timeProvider)
+    private func transactions() -> Transactions {
+        Transactions(cardRepository: cardRepository(), idGenerator: idGenerator(), timeProvider: timeProvider())
     }
 
-    func operations(cards: Cards, feesCalculator: CardFeesCalculator, trasactions: Transactions, eventsPublisher: CardEventsPublisher) -> Operations {
-        Operations(cards: cards, feesCalculator: feesCalculator, transactions: trasactions, eventsPublisher: eventsPublisher)
+    private func operations() -> Operations {
+        let feesCalculator = cardFeesCalculator(transactionFeePolicy: transactionFeePolicy())
+        return Operations(cards: cards(), feesCalculator: feesCalculator, transactions: transactions(), eventsPublisher: cardEventsPublisher())
+    }
+    
+    func payments() -> Payments {
+        let facade = PaymentsFacade(cards: cards(), operations: operations(), transactions: transactions())
+        return LoggingPaymentsProxy(payments: facade)
     }
     
 }

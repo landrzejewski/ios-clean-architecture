@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct CleanArchitectureApp: App {
     
-    let container = PaymentsConfiguration()
+    let container = try! PaymentsConfiguration()
     
     var body: some Scene {
         WindowGroup {

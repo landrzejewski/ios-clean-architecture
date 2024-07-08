@@ -9,7 +9,7 @@ import Foundation
 
 protocol Payments {
 
-    func getBalanceFor(_ cardNumber: CardNumber) throws -> MonetaryAmount
+    func getBalance(_ cardNumber: CardNumber) throws -> MonetaryAmount
     
     func getTransactionsSince(_ cardNumber: CardNumber, _ timestamp: Date) throws -> [CardTransaction]
 
