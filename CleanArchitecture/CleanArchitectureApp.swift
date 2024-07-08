@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct CleanArchitectureApp: App {
+    
+    let container = PaymentsConfiguration()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CardsView(viewModel: CardsViewModel(container: container))
         }
     }
 }

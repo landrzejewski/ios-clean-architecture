@@ -1,0 +1,4 @@
+Pobieranie aktualnego balansu karty
+Pobieranie transakcji na karcie rozpoczynając od wskazanej daty
+Zapłata kartą po spełnieniu wymagań: karta nie wygasła, jest wystarczająca ilość środków
+Naliczeine opłat za transakcje np. stała opłata per transakcja

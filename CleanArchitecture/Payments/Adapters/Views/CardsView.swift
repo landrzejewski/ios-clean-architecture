@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  CardsView.swift
 //  CleanArchitecture
 //
 //  Created by Łukasz Andrzejewski on 08/07/2024.
@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CardsView: View {
+    
+    var viewModel: CardsViewModel
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,9 +19,8 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onAppear() {
+            try? viewModel.start()
+        }
     }
-}
-
-#Preview {
-    ContentView()
 }
